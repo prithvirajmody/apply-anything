@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apply-anything"
+version = "0.1.0"
+description = "An agent-driven pipeline for finding, filling and tracking applications: jobs, internships, hackathons, fellowships, grants and events."
+readme = "README.md"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+requires-python = ">=3.11"
+dependencies = []
+keywords = ["job-applications", "internships", "hackathons", "automation", "claude-code", "agents"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: Other/Proprietary License",
+  "Operating System :: OS Independent",
+]
+
+[project.scripts]
+aa = "applyanything.cli:main"
+
+[tool.setuptools]
+packages = ["applyanything", "applyanything.sources"]
+
+[tool.setuptools.package-data]
+applyanything = ["ui/*"]

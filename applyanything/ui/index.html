@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="aa-token" content="{{TOKEN}}">
+  <meta name="aa-demo" content="{{DEMO}}">
+  <title>Apply Anything</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <a class="brand" href="#/overview" aria-label="Apply Anything home">
+        <img src="/static/favicon.svg" alt="" width="28" height="28">
+        <span>Apply Anything</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#/overview" data-page="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h6V4H4zm0 7h6v-5H4zm10 0h6v-9h-6zm0-16v5h6V4z"/></svg>Overview</a>
+        <a href="#/opportunities" data-page="opportunities"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Opportunities</a>
+        <a href="#/batches" data-page="batches"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7l8-4 8 4-8 4zm0 5l8 4 8-4M4 17l8 4 8-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Batches</a>
+        <a href="#/activity" data-page="activity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>Activity</a>
+        <a href="#/insights" data-page="insights"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10m7 10V4m7 16v-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Insights</a>
+      </nav>
+      <div class="side-foot">
+        <div class="sync-state" id="sync-state">Not synced yet</div>
+        <button class="btn btn-quiet" id="sync-btn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8m0-5v5h5M4 13a8 8 0 0 0 14.3 4.9L20 16m0 5v-5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sync sources
+        </button>
+        <pre class="job-log" id="job-log" hidden></pre>
+        <button class="btn btn-quiet theme-btn" id="theme-btn" type="button" aria-label="Switch color theme">Theme: auto</button>
+      </div>
+    </aside>
+
+    <main class="main" id="main" tabindex="-1">
+      <div class="demo-banner" id="demo-banner" hidden>
+        Demo data: every organization here is fictional. Run <code>./aa init</code> to start your own.
+      </div>
+      <div id="view"></div>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Opportunity details" tabindex="-1"></aside>
+
+  <dialog class="dialog" id="add-dialog">
+    <form method="dialog" id="add-form">
+      <h2>Track an opportunity</h2>
+      <p class="muted">Any link works: a job posting, hackathon, fellowship, grant, scholarship or event. Leave org and title blank to look them up.</p>
+      <label>URL<input name="url" type="url" required placeholder="https://..."></label>
+      <div class="grid2">
+        <label>Organization<input name="org" autocomplete="off"></label>
+        <label>Title<input name="title" autocomplete="off"></label>
+      </div>
+      <div class="grid3">
+        <label>Kind
+          <select name="kind">
+            <option value="">Guess from title</option>
+            <option>internship</option><option>job</option><option>hackathon</option><option>fellowship</option>
+            <option>scholarship</option><option>grant</option><option>program</option><option>event</option><option>other</option>
+          </select>
+        </label>
+        <label>Deadline<input name="deadline" type="date"></label>
+        <label>Location<input name="location" autocomplete="off"></label>
+      </div>
+      <label>Note<input name="note" autocomplete="off"></label>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel" type="button" id="add-cancel">Cancel</button>
+        <button class="btn btn-primary" value="ok" type="submit">Add</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

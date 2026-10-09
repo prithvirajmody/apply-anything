@@ -1,0 +1,57 @@
+{
+  "name": "ALEX RIVERA",
+  "sections": [
+    {
+      "title": "EDUCATION",
+      "items": [
+        {"type": "entry", "bold": "State University", "normal": ", B.S. Computer Science", "right": "Expected May 2028", "before": 40},
+        {"type": "line", "label": "Coursework: ", "text": "Data Structures & Algorithms, Operating Systems, Databases, Machine Learning", "after": 0}
+      ]
+    },
+    {
+      "title": "EXPERIENCE",
+      "items": [
+        {
+          "type": "entry", "bold": "Software Engineering Intern", "normal": ", Example Logistics Co.", "right": "Jun 2026 – Aug 2026",
+          "bullets": [
+            "Built an internal shipment-search service (FastAPI, PostgreSQL) that replaced a spreadsheet workflow for a 12-person operations team",
+            "Cut the nightly import job from 40 to 6 minutes by batching database writes and adding an index on the carrier lookup",
+            "Wrote pytest and Playwright suites for the service and added them to the team's GitHub Actions pipeline"
+          ]
+        },
+        {
+          "type": "entry", "bold": "Undergraduate Research Assistant", "normal": ", Data Systems Lab", "right": "Jan 2026 – Present",
+          "bullets": [
+            "Benchmarked three open-source vector databases on a 2M-document corpus and reported recall and latency trade-offs",
+            "Found and fixed a data-leakage bug in the lab's evaluation split, which changed the headline result"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PROJECTS",
+      "items": [
+        {
+          "type": "entry", "bold": "Course Planner", "normal": ": degree-audit web app", "right": "TypeScript, React, SQLite", "right_bold": false,
+          "bullets": [
+            "Built a planner that checks a student's schedule against degree requirements; used by 300+ students in its first term"
+          ]
+        },
+        {
+          "type": "entry", "bold": "Inbox Agent", "normal": ": personal email triage", "right": "Python, LLM APIs", "right_bold": false,
+          "bullets": [
+            "Wrote an agent that sorts email into tasks and drafts replies, with every action logged and nothing sent without approval"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "SKILLS",
+      "items": [
+        {"type": "line", "label": "Languages: ", "text": "Python, TypeScript, SQL, Java"},
+        {"type": "line", "label": "Frameworks: ", "text": "FastAPI, React, PyTorch, scikit-learn"},
+        {"type": "line", "label": "Tools: ", "text": "Git, GitHub Actions, Docker, Linux, PostgreSQL, pytest, Playwright"}
+      ]
+    }
+  ]
+}

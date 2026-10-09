@@ -1,0 +1,115 @@
+# Apply Anything profile config.
+# `./aa init` copies this file to profile/config.toml. Everything in profile/ stays on
+# your machine: the folder is in .gitignore. Edit freely; run `./aa rank` after changes.
+
+# ---------------------------------------------------------------------------
+# Who you are. Used for the resume and cover-letter headers and shown in the UI.
+# Form answers live in profile/packet.md, not here.
+[identity]
+name = "Alex Rivera"
+email = "alex@example.com"
+phone = "+1 555 010 0199"
+location = "Springfield, IL"
+# label is the text printed on your resume and letters; a short URL reads best for applicant tracking systems
+links = [
+  { label = "linkedin.com/in/arivera-example", url = "https://www.linkedin.com/in/arivera-example" },
+  { label = "github.com/arivera-example", url = "https://github.com/arivera-example" },
+]
+
+# ---------------------------------------------------------------------------
+# Sources: where opportunities come from. Add as many [[sources]] blocks as you like.
+# Anything else (a fellowship page, a grant form, a Luma event) goes in by hand:
+#   ./aa add <url>      or the "Track opportunity" button in the UI.
+
+[[sources]]
+type = "simplify"                       # the community-maintained SimplifyJobs lists
+name = "simplify-internships"
+repo = "SimplifyJobs/Summer2027-Internships"
+branch = "dev"
+kind = "internship"
+terms = ["Summer 2027"]
+categories = { "Software" = "SWE", "Software Engineering" = "SWE", "AI/ML/Data" = "AI/ML" }
+days = 30                               # only postings from the last 30 days
+degree = "Bachelor's"                   # drop postings that list degrees but not this one
+# SimplifyJobs often tags a new season's postings with last season's term:
+stale_term = { term = "Summer 2026", posted_after = "2026-08-01" }
+pinned = []                             # listing ids to keep whatever their age
+
+# New-grad roles from the same maintainers:
+# [[sources]]
+# type = "simplify"
+# name = "simplify-new-grad"
+# repo = "SimplifyJobs/New-Grad-Positions"
+# kind = "job"
+# terms = []
+# days = 30
+
+# Every matching posting on specific companies' job boards:
+# [[sources]]
+# type = "greenhouse"
+# boards = ["stripe", "figma"]          # job-boards.greenhouse.io/<board>
+# include = ["intern"]                  # title regexes (case-insensitive); empty = all
+# exclude = ["phd", "master"]
+# kind = "internship"
+#
+# [[sources]]
+# type = "lever"
+# companies = ["palantir"]              # jobs.lever.co/<company>
+# include = ["intern"]
+#
+# [[sources]]
+# type = "ashby"
+# orgs = ["ramp"]                       # jobs.ashbyhq.com/<org>
+# include = ["intern"]
+
+[[sources]]
+type = "devpost"                        # open and upcoming hackathons
+online_only = false
+themes = []                             # e.g. ["Machine Learning/AI", "Fintech"]; empty = all
+max_pages = 8                           # 9 hackathons per page
+
+# ---------------------------------------------------------------------------
+# Ranking. Tiers are your judgment of how selective each org is; unlisted orgs
+# count as "solid". Effort starts from the tier's base score and moves with fit,
+# account requirements, and the number of essays a form asks for.
+[rank]
+reach = ["Google", "Meta", "Apple", "Jane Street", "Citadel", "OpenAI"]
+competitive = ["Adobe", "Intel", "Qualcomm", "Capital One", "Visa", "Salesforce"]
+accessible = []                         # e.g. regional employers with large intern classes
+
+# Title keywords that match your profile (queued first) and ones far from it (queued last).
+# Each entry is a case-insensitive regex matched on word boundaries.
+fit = ["software engineer", "software developer", "backend", "back[- ]end", "full[- ]?stack", "platform",
+       "machine learning", "ml", "ai", "data", "python", "infrastructure", "developer tools"]
+far = ["ios", "android", "mobile", "embedded", "firmware", "fpga", "asic", "hardware", "mechanical",
+       "electrical", "sales", "marketing", "accounting", "analyst", "designer", "product manag"]
+# Titles you're not eligible for: scored "ineligible" and kept out of batches.
+ineligible = ["phd", "ph\\.d", "master'?s", "mba", "graduate student", "freshman", "sophomore",
+              "first[- ]year", "high school"]
+questions = true                        # read each Greenhouse form to count required essays
+
+# ---------------------------------------------------------------------------
+# Eligibility flags keep opportunities out of batches (they stay visible in the UI).
+[eligibility]
+# Orgs whose roles usually require citizenship or a clearance. Verify per posting.
+requires_citizenship = ["Lockheed Martin", "Northrop Grumman", "RTX", "General Dynamics",
+                        "Booz Allen Hamilton", "Leidos"]
+# Set to true if you need visa sponsorship (now or later). Orgs in no_sponsorship are
+# then flagged. Add an org only when its own posting says it won't sponsor.
+needs_sponsorship = false
+no_sponsorship = []
+# Countries you can work in ("US" understands state abbreviations and "Remote").
+countries = ["US"]
+location_kinds = ["job", "internship"]
+
+# ---------------------------------------------------------------------------
+# Batches: one batch is one sitting with the agent.
+[batch]
+size = 10
+per_org = 1                             # one opportunity per org across all batches
+mode = "prestige"                       # prestige | mixed | deadline
+freshness_days = 30
+mix = { reach = 2, competitive = 3, solid = 3, accessible = 2 }   # used by mode = "mixed"
+
+[ui]
+port = 8765

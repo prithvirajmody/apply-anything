@@ -1,0 +1,27 @@
+# Your data. Never commit it.
+/profile/
+*.db
+*.db-wal
+*.db-shm
+*.kdbx
+.env
+.env.*
+accounts*.json
+
+# Generated documents outside profile/
+*.docx
+*.pdf
+!docs/**/*.pdf
+
+# Python, editors, OS
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+node_modules/
+.idea/
+.vscode/
+.DS_Store

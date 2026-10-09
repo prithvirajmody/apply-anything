@@ -1,0 +1,13 @@
+[
+  {
+    "key": "Example_Co",
+    "company": "Example Co",
+    "role": "Software Engineering Intern, Summer 2027",
+    "paras": [
+      "I'm applying for the Software Engineering Internship because your posting describes the work I enjoy most: taking an internal tool that people depend on and making it fast and dependable. The line about owning a service end to end, from schema to on-call, is the part that stood out.",
+      "This summer at Example Logistics I built a shipment-search service with FastAPI and PostgreSQL that replaced a shared spreadsheet for the operations team. The hard part was the nightly import: it took 40 minutes and sometimes overlapped with the morning shift. Batching the writes and adding one index brought it to 6 minutes, and the test suite I added to CI caught two regressions before they shipped.",
+      "In the Data Systems Lab I benchmark retrieval systems, which taught me to distrust a result until I can explain it. When our evaluation numbers looked too good, I traced them to a leak between the training and test splits and fixed it, even though the corrected numbers were less exciting.",
+      "I'd bring the same habits to your team: measure first, write the test, and keep the people who use the tool in the loop. Thank you for considering my application."
+    ]
+  }
+]
