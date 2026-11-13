@@ -1,0 +1,6 @@
+# Optional. Use complete, interchangeable answers you have written or approved.
+# Copy the full field label. Use this only for ordinary free-text questions.
+#
+# [[question]]
+# prompt = "What is your favorite snack?"
+# variants = ["Salted popcorn.", "My favorite snack is salted popcorn."]
