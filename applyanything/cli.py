@@ -8,7 +8,7 @@ import shutil
 import sys
 import time
 
-from . import batch, config, docs, insights, pipeline
+from . import answers, batch, config, docs, insights, pipeline
 from .db import DB, LABELS, STATUSES
 
 
@@ -176,6 +176,20 @@ def cmd_set(a):
     print(f"{oid}: " + ", ".join(f"{k}={d.get(k)!r}" for k in f))
 
 
+def cmd_answer(a):
+    question = sys.stdin.read()
+    if not answers.normalize(question):
+        sys.exit("pass the complete question on standard input")
+    if a.max_chars is not None and a.max_chars < 0:
+        sys.exit("--max-chars must be nonnegative")
+    path = config.home() / "answer-variants.toml"
+    try:
+        result = answers.route(path, a.id, question, a.instructions, a.max_chars)
+    except (OSError, ValueError) as exc:
+        sys.exit(f"could not read {path}: {exc}")
+    out_json(result)
+
+
 def cmd_event(a):
     db = open_db()
     oid = resolve(db, a.id)
@@ -340,6 +354,11 @@ def main(argv=None):
     s.add_argument("--answer", action="append", metavar="QUESTION=ANSWER", help="a knockout answer given (repeatable)")
     s.add_argument("--referral", metavar="NAME")
     s.set_defaults(fn=cmd_set)
+    s = sub.add_parser("answer", help="check a free-text prompt or preview approved wording (JSON)")
+    s.add_argument("id", help="full opportunity id for consistent wording across retries")
+    s.add_argument("--instructions", default="", help="separate help text for the question")
+    s.add_argument("--max-chars", type=int, help="the form field's character limit")
+    s.set_defaults(fn=cmd_answer)
     s = sub.add_parser("event", help="add a timeline event (moves the status forward if it's a later step)")
     s.add_argument("id")
     s.add_argument("--status", default="", help=", ".join(STATUSES))

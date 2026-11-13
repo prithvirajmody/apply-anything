@@ -102,13 +102,20 @@ Everything personal lives in `profile/`, which is git-ignored:
 | File | What it is |
 |---|---|
 | `config.toml` | Identity for document headers, sources, tiers, keywords, eligibility, batch settings |
-| `packet.md` | The agent's only source of answers: contact details, education, work-authorization wording, standard answers, work history, skills, a story bank for essays, and what to leave out |
+| `packet.md` | The agent's source of applicant facts, standard answers, essay stories, and what to leave out |
+| `answer-variants.toml` | Optional approved wording for ordinary free-text questions |
 | `resume.json`, `letters.json` | Resume and cover-letter content, built to .docx and .pdf |
 | `iteration-log.md` | Your experiment log: hypotheses, changes, results |
 | `aa.db` | The tracker database (SQLite). Change it through `./aa` or the UI |
 | `files/` | Generated resumes and letters |
 
 Set `AA_HOME` to keep the profile somewhere else.
+
+To vary an ordinary free-text answer, copy `examples/profile/answer-variants.toml` into
+your profile if you already have one, then add the exact field label and the wording you
+approve. `/apply` picks an option that fits the field's character limit. With the same
+options and limit, retries for the same application and question pick the same wording.
+To preview a prompt, pipe the field label into `./aa answer <full-opportunity-id>`.
 
 ## Sources
 
@@ -141,9 +148,9 @@ A new source is one Python file with a `fetch()` function; see
 
 - **You are the applicant.** The agent answers only from your packet and your resume, never
   invents experience, and leaves blanks rather than guessing.
-- **Human checks stay human.** CAPTCHAs, "are you a person" questions, emailed security
-  codes (it can find the email and show you the code), signatures, attestations, waivers
-  and legal acknowledgments are always yours.
+- **Human checks stay human.** CAPTCHAs, questions with separate instructions for AI agents
+  and applicants, AI-use disclosures, emailed security codes (it can find the email and show
+  you the code), signatures, attestations, waivers and legal acknowledgments are always yours.
 - **Nothing is submitted without your OK** for that application or that batch.
 - **Pace and terms.** It fills one form at a time, at about human speed, in your own browser
   session. It is not a mass-submission bot. Respect each site's terms and each employer's

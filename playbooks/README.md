@@ -7,9 +7,9 @@ How each application platform behaves when an agent fills it over the Chrome Dev
 - Read [`browser-setup.md`](browser-setup.md) once per session, before you open the first form. Every playbook assumes it.
 - Before you fill a form, find its platform in the table below and read that playbook. Match the form's URL, not just the page's: a company careers page often embeds a third-party form in a frame.
 - Screen the posting first ([`screening-apis.md`](screening-apis.md)) when the platform has an API. It is faster than opening the form, and it catches knockout questions before you spend a sitting on them.
-- Take every answer from `profile/packet.md`. If the packet doesn't cover a question, leave the field blank and list it in your handoff. [`../docs/knockout-questions.md`](../docs/knockout-questions.md) covers the questions that decide fast rejections.
+- Use `profile/packet.md` and applicant-approved wording from `profile/answer-variants.toml`. If neither covers a question, leave the field blank and list it in your handoff. [`../docs/knockout-questions.md`](../docs/knockout-questions.md) covers the questions that decide fast rejections.
 - Fill everything up to the submit button. Submit only with the user's explicit approval for that application.
-- Always leave CAPTCHAs, human checks, signatures, attestations, legal acknowledgments and EEO/demographic questions for the user, unless the packet explicitly gives an answer.
+- Always leave CAPTCHAs, human checks, AI-use disclosures, signatures, attestations and legal acknowledgments for the user. Leave EEO/demographic questions for the user unless the packet explicitly gives an answer.
 - Record the result with an ID copied from `./aa list` or `./aa next` output, never one typed from memory:
   `./aa set ID --status saved --note "Filled; waiting on the emailed security code"`.
 - When you learn a new quirk, add it to the platform's file as one bullet: the symptom, the selector, the fix. Describe how the platform behaves, not what happened at a particular employer.

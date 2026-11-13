@@ -1,9 +1,11 @@
 # Applicant packet
 
-The single source of truth for every form the agent fills for you. The agent uses only
-what is written here or on your resume. When a question isn't covered, it leaves the
-field blank and asks you. Update this file whenever you answer something new, so the
-next form gets it right without asking again.
+The agent uses this packet and your resume for applicant facts. When a question isn't
+covered, it leaves the field blank and asks you. Update this file with reusable answers
+to ordinary questions.
+
+For ordinary free-text questions, you can add alternative phrasings you approve in
+`answer-variants.toml` in this folder.
 
 Replace every `<...>` placeholder. Delete rows that don't apply to you.
 
@@ -13,7 +15,7 @@ Replace every `<...>` placeholder. Delete rows that don't apply to you.
 - Never invent facts, numbers, product usage or experiences. Missing information means
   a blank field and a line in the report.
 - Always leave these to me: signatures and typed-name signatures, certifications and
-  attestations, privacy or legal acknowledgments, CAPTCHAs and "are you human" checks,
+  attestations, privacy or legal acknowledgments, CAPTCHAs, human checks and AI-use disclosures,
   emailed security codes (find the email and show me the code; I type it), and any
   question this packet says to leave.
 - Resume to upload: `profile/files/<variant>/<Your_Name>_Resume.pdf`. Pick the variant by
